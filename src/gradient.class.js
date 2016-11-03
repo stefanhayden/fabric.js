@@ -110,7 +110,7 @@
         var originX = 50;
         var originY = 50;
         var r = options.spread / 2;
-        var angle = options.angle;
+        var angle = -options.angle;
         var rAngle = angle + 180;
         var radian = Math.PI/180;
         coords = {
