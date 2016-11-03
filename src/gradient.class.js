@@ -106,12 +106,27 @@
       this.id = fabric.Object.__uid++;
       this.type = options.type || 'linear';
 
-      coords = {
-        x1: options.coords.x1 || 0,
-        y1: options.coords.y1 || 0,
-        x2: options.coords.x2 || 0,
-        y2: options.coords.y2 || 0
-      };
+      if (options.angle) {
+        var originX = 50;
+        var originY = 50;
+        var r = options.spread / 2;
+        var angle = options.angle;
+        var rAngle = angle + 180;
+        var radian = Math.PI/180;
+        coords = {
+          x1: originX + (r * Math.cos(rAngle * radian)),
+          y1: originY + (r * Math.sin(rAngle * radian)),
+          x2: originX + (r * Math.cos(angle * radian)),
+          y2: originY + (r * Math.sin(angle * radian))
+        };
+      } else {
+        coords = {
+          x1: options.coords.x1 || 0,
+          y1: options.coords.y1 || 0,
+          x2: options.coords.x2 || 0,
+          y2: options.coords.y2 || 0
+        };
+      }
 
       if (this.type === 'radial') {
         coords.r1 = options.coords.r1 || 0;
