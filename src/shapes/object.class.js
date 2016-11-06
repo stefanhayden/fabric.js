@@ -1482,9 +1482,11 @@
 
       gradient.type = options.type || (options.r1 || options.r2 ? 'radial' : 'linear');
       
-      if (options.angle) {
+      if (typeof options.angle === 'number') {
         gradient.angle = options.angle;
-        gradient.spread = options.spread;
+        gradient.width = options.width;
+        gradient.offsetX = options.offsetX;
+        gradient.offsetY = options.offsetY;
       } else {
         gradient.coords = {
           x1: options.x1,
@@ -1509,6 +1511,9 @@
           opacity: color.getAlpha()
         });
       }
+      
+      gradient.originX = this.width / 2;
+      gradient.originY = this.height / 2;
 
       return this.set(property, fabric.Gradient.forObject(this, gradient));
     },

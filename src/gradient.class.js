@@ -106,18 +106,20 @@
       this.id = fabric.Object.__uid++;
       this.type = options.type || 'linear';
 
-      if (options.angle) {
-        var originX = 50;
-        var originY = 50;
-        var r = options.spread / 2;
+      if (typeof options.angle === 'number') {
+        var originX = options.originX || 0;
+        var originY = options.originY || 0;
+        var r = options.width / 2;
         var angle = -options.angle;
         var rAngle = angle + 180;
         var radian = Math.PI/180;
+        var offsetX = options.offsetX || 0;
+        var offsetY = options.offsetY || 0;
         coords = {
-          x1: originX + (r * Math.cos(rAngle * radian)),
-          y1: originY + (r * Math.sin(rAngle * radian)),
-          x2: originX + (r * Math.cos(angle * radian)),
-          y2: originY + (r * Math.sin(angle * radian))
+          x1: originX + offsetX + (r * Math.cos(rAngle * radian)),
+          y1: originY + offsetY+ (r * Math.sin(rAngle * radian)),
+          x2: originX + offsetX + (r * Math.cos(angle * radian)),
+          y2: originY + offsetY + (r * Math.sin(angle * radian))
         };
       } else {
         coords = {
@@ -439,6 +441,7 @@
         options.y2 /= scaleFactor;
       }
     }
+    
     return ellipseMatrix;
   }
 })();
