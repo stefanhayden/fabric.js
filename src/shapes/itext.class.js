@@ -836,7 +836,7 @@
           ctx.fillRect(
             leftOffset + lineLeftOffset + this._getWidthOfCharsAt(ctx, i, j),
             topOffset + lineTopOffset,
-            this._getWidthOfChar(ctx, _char, i, j),
+            this._getWidthOfChar(ctx, _char, i, j) + 0.5,
             heightOfLine / this.lineHeight
           );
         }
